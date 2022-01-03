@@ -508,5 +508,71 @@ occursin("Economics","M") # returns false
 split("Economics","n") # returns ("Eco" "omics")
 split("I like economics") # returns ("I" "like" "economics")
 
-# Use functions 
+# Use functions
 myfunction1(i)
+
+myfunction3(keyword=0.5, j, i) # works as intended
+
+
+a1 = myfunction5(1) # creates a function a1 that produces 1+var2
+a2 = myfunction5(2) # creates a function a2 that produces 2+var2
+a1(3) # returns 4
+
+## loops
+# Julia provides with basic loops, including breaks and continues:
+
+# basic loop
+a = [1, 2, 3]
+for i in a
+# do something
+end
+
+# loop with a break
+a = [1, 2, 3]
+for i in a
+# do something until a condition is satisfied
+break
+end
+# loop with a continue
+a = [1, 2, 3]
+for i in a
+# jump to next step of the iteration if a condition is satisfied
+continue
+end
+
+# Nested loop --------------------------------------------------------------
+# nested loops, compact notation
+for i in 1:5, j in 1:10
+# do something
+end
+
+# Matlabish looop
+for i = 1:N
+# do something
+end
+
+# Note: In contrast with other languages, in Julia if the counter variable did not exist before the loop starts, it will be killed at the end of the loop. Loops can be used to define arrays in comprehensions (a ruled-defined array)
+
+[n^2 for n in 1:5] # basic comprehensions
+Float64[n^2 for n in 1:5] # comprehension fixing type
+
+# Julia complements standard loops with comprehensions and whiles
+# Comprehensions
+[exp(i) for i in 1:5]
+# basic while
+while i <= N
+# do something
+end
+
+## Conditionals
+# Julia has both traditional if-then statements
+if i <= N
+# do something
+elseif
+# do something else
+else
+# do something even more different
+end
+
+# and efficient ternary expressions condition ? do something : do something else such
+a<2 ? b = 1 : b = 2
