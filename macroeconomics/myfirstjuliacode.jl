@@ -409,18 +409,21 @@ a*B # multiplication of two matrices
 a\B # solution of linear system ax = B
 
 # Advanced operations with matrices:
+a = [1 2 3; 4 1 6; 7 8 1]
+B = copy(a)
+using LinearAlgebra
 inv(a) # inverse of a
 pinv(a) # pseudo-inverse of a
 rank(a) # rank of a
 norm(a) # Euclidean norm of a
 det(a) # determinant of a
-trace(a) # trace of a
+tr(a) # trace of a
 eigen(a) # eigenvalues and eigenvectors
 tril(a) # lower triangular matrix of a
 triu(a) # upper triangular matrix of a
 rotr90(a,n) # rotate a 90 degrees n times
 rot180(a,n) # rotate a 180 degrees n times
-cat(i,a,b) # concatenate a and b along dimension i
+cat(i,a,B) # concatenate a and b along dimension i
 a = [[1 2] [1 2]] # concatenate horizontally
 hcat([1 2],[1 2]) # alternative notation to above
 a = [[1 2]; [1 2]] # concatenate vertically
@@ -429,3 +432,81 @@ a = diagm(0=>[1; 2; 3]) # diagonal matrix
 a = reshape(1:10, 5, 2) # reshape
 sort(a,1) # sorts rows lexicographically
 sort(a,2) # sorts columns lexicographically
+## Special Matrix
+Symmetric(a)
+Hermitian(a)
+Diagonal(a)
+
+
+#A powerful (but tricky!) function is broadcast() , which extends a non-conforming matrix to the required dimensions in a function:
+a = [1,2]
+b = [1 2;3 4] # returns [2 3;5 6]
+
+## Characters
+Int32('a') # returns 97
+Int64('a') # also returns 97
+Int128('a') # also returns 97
+Char(97) # returns a
+'a'+1 # returns begin
+
+## Strings
+
+a ="I like economics" # string
+b = a[1] # second component of string (here, 'I')
+b = a[end] # last component of string (here, 's')
+
+#Note that b is a character, not a string:
+typeof(b) # returns Char
+string(b) # returns "s"
+
+b = a[1:1]
+
+println("""I like economics "with" quotes""")
+# returns I like economics "with" quotes
+
+# Concatening strings ---
+string('a','b') # returns ab
+string("a","b") # returns ab
+"a"*"b" # returns ab
+" " # white space
+"a"*" "*"b" # returns a b
+*("a","b") # returns ab
+repeat("a",2) # returns aa
+"a"^2 # returns aa also
+join(["a","b"]," and ") # returns "a and b"
+
+using Random # loads the required package for random character generation
+randstring(5) # random string of n characters
+
+# We can insert a variable inside a string
+a = 3
+string("a=$a") # returns a=3
+b = true
+string(b) # returns "true"
+
+# Note: the use of operator $ to interpolate the variable a and the return of a boolean.
+
+# Manipulate strings include --------------------------------------------------
+firstindex("Economics") # returns 1
+lastindex("Economics") # returns 9
+uppercase("Economics") # returns ECONOMICS
+lowercase("ECONOMICS") # returns economics
+replace("Economics","cs"=>"a") # returns Economia
+reverse("Economics") # returns scimonocE
+strip(" Economics ") # strips leading and trailing whitespace
+lstrip(" Economics") # strips leading whitespace
+rstrip("Economics ") # strips trailing whitespace
+lpad("Economics",10) # returns Economics with left padding (10)
+rpad("Economics",10) # returns Economics with right padding (10)
+
+# contains()
+contains("Economics", "E")
+occursin("Economics","E") # returns false
+occursin("Economics","M") # returns false
+
+#substrings
+split("Economics","n") # returns ("Eco" "omics")
+split("I like economics") # returns ("I" "like" "economics")
+
+# Use functions 
+myfunction1(i)
